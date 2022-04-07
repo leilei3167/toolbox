@@ -1,6 +1,9 @@
 package toolbox
 
-import "math/rand"
+import (
+	"math/rand"
+	"time"
+)
 
 const (
 	Bytes = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -12,6 +15,7 @@ const (
 )
 
 func RandStringN(n int) string {
+	rand.NewSource(time.Now().UnixNano())
 	b := make([]byte, n)
 	// A rand.Int63() generates 63 random bits, enough for letterIdxMax letters!
 	for i, cache, remain := n-1, rand.Int63(), letterIdxMax; i >= 0; {
